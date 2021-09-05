@@ -7,12 +7,16 @@ public class MovementComponent : MonoBehaviour
     [SerializeField] string jump = "Jump";
     [SerializeField] string attack = "Attack";
 
-    Transform otherPlayerPosition;
+    private Transform otherPlayerPosition;
+
+    private Animator animator;
+    private float animSpeed;
+    private bool animIsInAir;
 
     private CharacterController controller;
     private Vector3 playerVelocity = Vector3.zero;
     
-    private float playerSpeed = 4.0f;
+    private float speedMultiplier = 4.0f;
     private float jumpHeight = 4.0f;
     private float gravityValue = 9.81f;
 
@@ -24,6 +28,8 @@ public class MovementComponent : MonoBehaviour
         var otherPlayerTag = tag == "Player1" ? "Player2" : "Player1";
         var otherPlayer = GameObject.FindGameObjectWithTag(otherPlayerTag);
         otherPlayerPosition = otherPlayer.GetComponent<Transform>();
+
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -39,8 +45,8 @@ public class MovementComponent : MonoBehaviour
             camr.Normalize();
 
             playerVelocity = camf * Input.GetAxis(vertical) + camr * Input.GetAxis(horizontal);
-            playerVelocity *= playerSpeed;
-
+            playerVelocity *= speedMultiplier;
+            animSpeed = playerVelocity.sqrMagnitude;
             const float sqrMaxDistanceBetweenPlayers = 29f * 29f;
             var newPosition = (transform.position + playerVelocity * Time.deltaTime);
             if ((newPosition - otherPlayerPosition.position).sqrMagnitude > sqrMaxDistanceBetweenPlayers)
@@ -57,8 +63,14 @@ public class MovementComponent : MonoBehaviour
                 playerVelocity.y = jumpHeight;
             }
         }
-        
+        animIsInAir = playerVelocity.y > 0;
         playerVelocity.y -= gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+    }
+
+    private void FixedUpdate()
+    {
+        animator.SetFloat("Speed", animSpeed);
+        animator.SetBool("IsInAir", animIsInAir);
     }
 }
