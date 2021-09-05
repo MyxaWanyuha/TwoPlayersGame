@@ -2,10 +2,9 @@ using UnityEngine;
 
 public class CameraComponent : MonoBehaviour
 {
-    public Camera cam;
-    public Transform t1;
-    public Transform t2;
-    public Transform t3;
+    [SerializeField] Transform t1;
+    [SerializeField] Transform t2;
+    [SerializeField] Transform t3;
     public void FixedCameraFollowSmooth(/*Camera cam, Transform t1, Transform t2*/)
     {
         // How many units should we keep from the players
@@ -18,7 +17,8 @@ public class CameraComponent : MonoBehaviour
         // Distance between objects
         float distance = (t1.position - t2.position).magnitude;
         distance = Mathf.Clamp(distance, 4.4f, 6f);
-       
+
+        var cam = Camera.main;
         // Move camera a certain distance
         Vector3 cameraDestination = midpoint - cam.transform.forward * distance * zoomFactor;
 
