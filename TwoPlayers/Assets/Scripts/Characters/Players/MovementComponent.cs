@@ -41,14 +41,12 @@ public class MovementComponent : MonoBehaviour
             playerVelocity = camf * Input.GetAxis(vertical) + camr * Input.GetAxis(horizontal);
             playerVelocity *= playerSpeed;
 
-            const float sqrMaxDistanceToCenter = 24f * 24f;
-            const float sqrMaxDistanceBetweenPlayers = 10f * 10f;
+            const float sqrMaxDistanceBetweenPlayers = 29f * 29f;
             var newPosition = (transform.position + playerVelocity * Time.deltaTime);
-            var sqrDistanceToCenter = newPosition.sqrMagnitude;
-            if (sqrDistanceToCenter > sqrMaxDistanceToCenter 
-                || (newPosition - otherPlayerPosition.position).sqrMagnitude > sqrMaxDistanceBetweenPlayers)
-                playerVelocity = Vector3.zero;
-
+            if ((newPosition - otherPlayerPosition.position).sqrMagnitude > sqrMaxDistanceBetweenPlayers)
+            {
+                playerVelocity = otherPlayerPosition.position - newPosition;
+            }
             if (playerVelocity.x != 0f || playerVelocity.z != 0f)
             {
                 Quaternion direction = Quaternion.LookRotation(playerVelocity);
