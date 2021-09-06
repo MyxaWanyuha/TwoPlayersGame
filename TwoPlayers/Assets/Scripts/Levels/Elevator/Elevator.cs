@@ -1,17 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Elevator : MonoBehaviour
 {
-    [Header("ѕараметры лифта")]
-    [SerializeField]float minY;
-    [SerializeField]float maxY;
-    [SerializeField]float moveSpeed ;
+    [Header("Elevator parameters")]
+    [SerializeField] float minY;
+    [SerializeField] float maxY;
+    [SerializeField] float moveSpeed ;
     [SerializeField] bool isAnyButton;
-    [Header("—сылки на кнопки")]
+    [Header("Buttons links")]
     [SerializeField] PressurePlate[] buttons;
-
 
     void Start()
     {
@@ -29,6 +26,7 @@ public class Elevator : MonoBehaviour
         }
         return false;
     }
+
     private bool IsAllButtonsPressed()
     {
         foreach (var button in buttons)
@@ -38,13 +36,14 @@ public class Elevator : MonoBehaviour
         }
         return true;
     }
+
     private void MoveUp()
     {
         Vector3 currentPos = transform.position;
         currentPos.y = currentPos.y + moveSpeed * Time.deltaTime;
         if (currentPos.y > minY)
             if (currentPos.y < maxY)
-                this.transform.position = currentPos;
+                transform.position = currentPos;
     }
 
     private void MoveDown()
@@ -53,8 +52,9 @@ public class Elevator : MonoBehaviour
         currentPos.y = currentPos.y - moveSpeed * Time.deltaTime;
         if (currentPos.y < maxY)
             if (currentPos.y > minY)
-                this.transform.position = currentPos;
+                transform.position = currentPos;
     }
+
     void Update()
     {
         if (isAnyButton)
@@ -79,6 +79,5 @@ public class Elevator : MonoBehaviour
                 MoveDown();
             }
         }
-
     }
 }

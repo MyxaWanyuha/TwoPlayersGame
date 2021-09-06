@@ -1,18 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-//Health etc
+
 public class ConditionComponent : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    int maxHealth = 3;
+    int health;
+
+    bool isDead = false;
+
+    private void Start()
     {
-        
+        health = maxHealth;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TakeDamage(int damage)
     {
-        
+        health -= damage;
+        if (health <= 0)
+        {
+            isDead = true;
+            Dead();
+        }
+    }
+
+    public void Healing()
+    {
+        if (health < maxHealth)
+            ++health;
+    }
+
+    void Dead()
+    {
+        print("Dead");
     }
 }

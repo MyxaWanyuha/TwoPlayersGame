@@ -7,8 +7,6 @@ public class MovementComponent : MonoBehaviour
     public float slopeLimit = 45f;
     [Tooltip("Move speed in meters/second")]
     public float moveSpeed = 4f;
-    [Tooltip("Turn speed in degrees/second, left (+) or right (-)")]
-    public float turnSpeed = 300;
     [Tooltip("Whether the character can jump")]
     public bool allowJump = false;
     [Tooltip("Upward speed to apply when jumping in meters/second")]
@@ -26,13 +24,10 @@ public class MovementComponent : MonoBehaviour
     [SerializeField] string horizontal = "Horizontal";
     [SerializeField] string vertical = "Vertical";
     [SerializeField] string jump = "Jump";
-    [SerializeField] string attack = "Attack";
 
     private Transform otherPlayerPosition;
 
     private Animator animator;
-    private float animSpeed;
-    private bool animIsInAir;
 
     private void Awake()
     {
@@ -112,7 +107,6 @@ public class MovementComponent : MonoBehaviour
         //}
 
         rigidbody.MovePosition(transform.position + move * Time.deltaTime);
-        // Jump
         if (allowJump && JumpInput && IsGrounded)
         {
             rigidbody.AddForce(transform.up * jumpSpeed, ForceMode.VelocityChange);
