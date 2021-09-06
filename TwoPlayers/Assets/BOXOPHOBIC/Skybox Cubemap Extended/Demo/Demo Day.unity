@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5985562, g: 0.5432287, b: 0.7846496, a: 1}
+  m_IndirectSpecularColor: {r: 0.59849745, g: 0.543209, b: 0.7846517, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1061,8 +1061,10 @@ MonoBehaviour:
   minY: 0
   maxY: 0
   moveSpeed: 0
-  btnOnePressed: {fileID: 163417002}
-  btnTwoPressed: {fileID: 995613653}
+  isAnyButton: 0
+  buttons:
+  - {fileID: 163417002}
+  - {fileID: 995613653}
 --- !u!1001 &425990043
 PrefabInstance:
   m_ObjectHideFlags: 0
