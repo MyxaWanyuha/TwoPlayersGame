@@ -239,6 +239,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &814383663520448965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986513355923612912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9419ab5428b4b3c4d86443d798e04413, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliders:
+  - {fileID: 7858347595532716652}
+  - {fileID: 9178623011299379405}
 --- !u!114 &7836450554743237788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,7 +273,7 @@ MonoBehaviour:
   horizontal: Horizontal
   vertical: Vertical
   jump: Jump
-  attack: Horizontal
+  otherPlayerPosition: {fileID: 3123783842193425948}
 --- !u!114 &8386816693454135845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,21 +287,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 3
---- !u!114 &814383663520448965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1986513355923612912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9419ab5428b4b3c4d86443d798e04413, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  colliders:
-  - {fileID: 7858347595532716652}
-  - {fileID: 9178623011299379405}
 --- !u!1 &2218774579444276950
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,6 +431,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6479933853510328056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2310971638381485222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9419ab5428b4b3c4d86443d798e04413, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colliders: []
 --- !u!114 &6688517654897639833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -463,20 +476,7 @@ MonoBehaviour:
   horizontal: Horizontal2
   vertical: Vertical2
   jump: Jump2
-  attack: Horizontal
---- !u!114 &6479933853510328056
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2310971638381485222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9419ab5428b4b3c4d86443d798e04413, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  colliders: []
+  otherPlayerPosition: {fileID: 1214375356225896010}
 --- !u!1 &7836450555264681164
 GameObject:
   m_ObjectHideFlags: 0

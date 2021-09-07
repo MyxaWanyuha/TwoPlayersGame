@@ -9,6 +9,8 @@ public class AttackInput : MonoBehaviour
     string attack = "Attack";
 
     AttackComponent attackComponent;
+
+    bool isAttack = false;
     private void Start()
     {
         attackComponent = gameObject.GetComponent<AttackComponent>();
@@ -16,11 +18,14 @@ public class AttackInput : MonoBehaviour
 
     void Update()
     {
-        Input.GetButton(attack);
+        isAttack = Input.GetButton(attack);
     }
 
     private void FixedUpdate()
     {
-        attackComponent.StartAttack();
+        if (isAttack)
+        {
+            attackComponent.StartAttack();
+        }
     }
 }

@@ -6,6 +6,8 @@ public class AttackComponent : MonoBehaviour
 {
     [SerializeField] Collider[] colliders;
 
+    public bool IsAttack { get; private set; }
+
     private void Start()
     {
         StopAttack();
@@ -13,7 +15,8 @@ public class AttackComponent : MonoBehaviour
 
     public void StartAttack()
     {
-        foreach(var e in colliders)
+        IsAttack = true;
+        foreach (var e in colliders)
         {
             e.enabled = true;
         }
@@ -21,6 +24,7 @@ public class AttackComponent : MonoBehaviour
 
     public void StopAttack()
     {
+        IsAttack = false;
         foreach (var e in colliders)
         {
             e.enabled = false;

@@ -10,29 +10,32 @@ public class MovementComponent : MonoBehaviour
     [Tooltip("Whether the character can jump")]
     public bool allowJump = false;
     [Tooltip("Upward speed to apply when jumping in meters/second")]
-    public float jumpSpeed = 4f;
+    public float jumpSpeed = 5f;
 
     public bool IsGrounded { get; private set; }
-    public float ForwardInput { get; set; }
-    public float TurnInput { get; set; }
-    public bool JumpInput { get; set; }
+    float ForwardInput { get; set; }
+    float TurnInput { get; set; }
+    bool JumpInput { get; set; }
 
     new private Rigidbody rigidbody;
     private CapsuleCollider capsuleCollider;
 
-    [Header("ControlBindings")]
+    [Header("Control Bindings")]
     [SerializeField] string horizontal = "Horizontal";
     [SerializeField] string vertical = "Vertical";
     [SerializeField] string jump = "Jump";
 
-    private Transform otherPlayerPosition;
+    [Header("Private")]
+    [SerializeField] Transform otherPlayerPosition;
 
     private Animator animator;
+    public bool IsCanMovingJumping { get; set; }
 
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
         capsuleCollider = GetComponent<CapsuleCollider>();
+        IsCanMovingJumping = true;
     }
 
     private void FixedUpdate()
@@ -44,9 +47,6 @@ public class MovementComponent : MonoBehaviour
 
     private void Start()
     {
-        var otherPlayerTag = tag == "Player1" ? "Player2" : "Player1";
-        var otherPlayer = GameObject.FindGameObjectWithTag(otherPlayerTag);
-        otherPlayerPosition = otherPlayer.GetComponent<Transform>();
         animator = GetComponent<Animator>();
     }
 
@@ -80,6 +80,8 @@ public class MovementComponent : MonoBehaviour
 
     private void ProcessActions()
     {
+        if (IsCanMovingJumping == false) return;
+
         var cam = Camera.main;
         var camf = cam.transform.forward;
         camf.y = 0;
@@ -98,13 +100,13 @@ public class MovementComponent : MonoBehaviour
             Quaternion direction = Quaternion.LookRotation(move);
             transform.rotation = Quaternion.Lerp(transform.rotation, direction, 15f * Time.deltaTime);
         }
-        //var newPosition = (transform.position + move);
-        //const float MaxDistanceBetweenPlayers = 24f;
-        //const float sqrMaxDistanceBetweenPlayers = MaxDistanceBetweenPlayers * MaxDistanceBetweenPlayers;
-        //if ((newPosition - otherPlayerPosition.position).sqrMagnitude > sqrMaxDistanceBetweenPlayers)
-        //{
-        //    move = Vector3.zero;//otherPlayerPosition.position - newPosition;
-        //}
+        var newPosition = (transform.position + move);
+        const float MaxDistanceBetweenPlayers = 10f;
+        const float sqrMaxDistanceBetweenPlayers = MaxDistanceBetweenPlayers * MaxDistanceBetweenPlayers;
+        if ((newPosition - otherPlayerPosition.position).sqrMagnitude > sqrMaxDistanceBetweenPlayers)
+        {
+            move = Vector3.zero;//otherPlayerPosition.position - newPosition;
+        }
 
         rigidbody.MovePosition(transform.position + move * Time.deltaTime);
         if (allowJump && JumpInput && IsGrounded)
