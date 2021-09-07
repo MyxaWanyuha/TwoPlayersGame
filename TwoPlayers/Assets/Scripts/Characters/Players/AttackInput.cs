@@ -4,28 +4,28 @@ using UnityEngine;
 
 public class AttackInput : MonoBehaviour
 {
+    AttackComponent attack;
 
     [SerializeField]
-    string attack = "Attack";
-
-    AttackComponent attackComponent;
+    string attackBinding = "Attack";
 
     bool isAttack = false;
-    private void Start()
+
+    void Start()
     {
-        attackComponent = gameObject.GetComponent<AttackComponent>();
+        attack = GetComponent<AttackComponent>();
     }
 
     void Update()
     {
-        isAttack = Input.GetButton(attack);
+        isAttack = Input.GetButton(attackBinding);
     }
 
     private void FixedUpdate()
     {
         if (isAttack)
         {
-            attackComponent.StartAttack();
+            attack.StartAttack();
         }
     }
 }

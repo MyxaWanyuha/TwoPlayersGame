@@ -8,7 +8,7 @@ public class DamageZone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag[0] == 'P')
+        if (other.CompareTag("Player"))
         {
             other.gameObject.GetComponent<ConditionComponent>().TakeDamage(Damage);
         }

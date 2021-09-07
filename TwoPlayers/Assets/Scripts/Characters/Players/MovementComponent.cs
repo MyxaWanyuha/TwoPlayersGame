@@ -81,6 +81,7 @@ public class MovementComponent : MonoBehaviour
     private void ProcessActions()
     {
         if (IsCanMovingJumping == false) return;
+        var lastPos = transform.position;
 
         var cam = Camera.main;
         var camf = cam.transform.forward;
@@ -93,6 +94,8 @@ public class MovementComponent : MonoBehaviour
         var move = camf * Mathf.Clamp(Input.GetAxis(vertical), -1f, 1f) 
                  + camr * Mathf.Clamp(Input.GetAxis(horizontal), -1f, 1f);
         move *= moveSpeed;
+
+        print(move.sqrMagnitude);
         animator.SetFloat("Speed", move.sqrMagnitude);
 
         if (move.x != 0f || move.z != 0f)
@@ -101,7 +104,7 @@ public class MovementComponent : MonoBehaviour
             transform.rotation = Quaternion.Lerp(transform.rotation, direction, 15f * Time.deltaTime);
         }
         var newPosition = (transform.position + move);
-        const float MaxDistanceBetweenPlayers = 10f;
+        const float MaxDistanceBetweenPlayers = 24f;
         const float sqrMaxDistanceBetweenPlayers = MaxDistanceBetweenPlayers * MaxDistanceBetweenPlayers;
         if ((newPosition - otherPlayerPosition.position).sqrMagnitude > sqrMaxDistanceBetweenPlayers)
         {
