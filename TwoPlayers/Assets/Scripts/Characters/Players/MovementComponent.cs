@@ -101,7 +101,7 @@ public class MovementComponent : MonoBehaviour
             transform.rotation = Quaternion.Lerp(transform.rotation, direction, 15f * Time.deltaTime);
         }
         var newPosition = (transform.position + move);
-        const float MaxDistanceBetweenPlayers = 10f;
+        const float MaxDistanceBetweenPlayers = 24f;
         const float sqrMaxDistanceBetweenPlayers = MaxDistanceBetweenPlayers * MaxDistanceBetweenPlayers;
         if ((newPosition - otherPlayerPosition.position).sqrMagnitude > sqrMaxDistanceBetweenPlayers)
         {
@@ -114,6 +114,7 @@ public class MovementComponent : MonoBehaviour
             rigidbody.AddForce(transform.up * jumpSpeed, ForceMode.VelocityChange);
         }
     }
+
 }
 /*
 MIT License
