@@ -95,7 +95,6 @@ public class MovementComponent : MonoBehaviour
                  + camr * Mathf.Clamp(Input.GetAxis(horizontal), -1f, 1f);
         move *= moveSpeed;
 
-        print(move.sqrMagnitude);
         animator.SetFloat("Speed", move.sqrMagnitude);
 
         if (move.x != 0f || move.z != 0f)

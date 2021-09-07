@@ -10,10 +10,9 @@ public class DamageZone : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            print("Получил урон");
             var conditionComponent = other.gameObject.GetComponent<ConditionComponent>();
             conditionComponent.TakeDamage(Damage);
-            conditionComponent.MoveUp();
+            //conditionComponent.MoveUp();
         }
     }
 }
