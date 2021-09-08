@@ -13,7 +13,7 @@ public class Elevator : MonoBehaviour
     void Start()
     {
         minY = gameObject.transform.position.y;
-        maxY = minY + 11.29f;
+        //maxY = minY + 11.29f;
         moveSpeed = 1;
     }
 

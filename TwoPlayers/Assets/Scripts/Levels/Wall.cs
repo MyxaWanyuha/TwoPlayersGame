@@ -11,7 +11,7 @@ public class Wall : MonoBehaviour
     void Start()
     {
         minZ = gameObject.transform.position.z;
-        maxZ = minZ - 6.14f;
+
         moveSpeed = 5;
     }
 
@@ -35,7 +35,7 @@ public class Wall : MonoBehaviour
         if (gameObject.transform.localPosition.z > minZ)
         {
             isMoveForward = true;
-            moveSpeed = 25f;
+            moveSpeed = 40;
         }
     }
 
