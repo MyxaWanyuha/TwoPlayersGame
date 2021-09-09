@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class Trap : MonoBehaviour
 {
-    [SerializeField] float minY;
-    [SerializeField] float maxY;
-    [SerializeField] float moveSpeed;
-    bool isMoveUp = false;
-    bool isStopped = false;
+    float minY;
+    float maxY;
+    [SerializeField] bool isMoveUp = false;
+    [SerializeField] bool isStopped = false;
     bool temp = false;
-    [SerializeField]  float timeLeft = 2;
+    [SerializeField]  float cd = 2;
     private void Start()
     {
-        moveSpeed = 1;
         minY = transform.localPosition.y;
         maxY = minY + 0.33f;
     }
@@ -26,7 +24,6 @@ public class Trap : MonoBehaviour
         if (gameObject.transform.localPosition.y > maxY)
         {
             isMoveUp = false;
-            moveSpeed = 1f;
         }
     }
 
@@ -39,7 +36,6 @@ public class Trap : MonoBehaviour
         {
             isStopped = true;
             isMoveUp = true;
-            moveSpeed = 40;
         }
 
     }
@@ -66,7 +62,7 @@ public class Trap : MonoBehaviour
         }
         else if (!temp)
         {
-            StartCoroutine(Wait(2.0f));
+            StartCoroutine(Wait(cd));
 
         }
 
@@ -75,7 +71,6 @@ public class Trap : MonoBehaviour
     {
         yield return new WaitForSeconds(timeInSec);
         isMoveUp = true;
-        moveSpeed = 0.05f;
         //сделать нужное
     }
 }
