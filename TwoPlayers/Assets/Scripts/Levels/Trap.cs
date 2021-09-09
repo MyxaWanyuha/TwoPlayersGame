@@ -8,11 +8,13 @@ public class Trap : MonoBehaviour
     float maxY;
     bool isMoveUp = false;
     bool isStopped = false;
+    TrapDamageZone trapDamageZone;
     bool temp = false;
     [Tooltip("Начальная задержка перед первым применением")] [SerializeField] float delay;
     [Tooltip("Время перезарядки")] [SerializeField]  float cd = 2;
     private void Start()
     {
+        trapDamageZone = gameObject.GetComponent<TrapDamageZone>();
         minY = transform.localPosition.y;
         maxY = minY + 0.33f;
     }
@@ -43,10 +45,12 @@ public class Trap : MonoBehaviour
     
     IEnumerator Wait(float second)
     {
+        trapDamageZone.isActive = false;
         temp = true;
         yield return new WaitForSeconds(second);
         isStopped = false;
         temp = false;
+        trapDamageZone.isActive = true;
     }
     private void Update()
     {

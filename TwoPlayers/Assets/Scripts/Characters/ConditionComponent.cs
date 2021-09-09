@@ -41,11 +41,7 @@ public class ConditionComponent : MonoBehaviour
             ++health;
     }
 
-    public void MoveUp()
-    {
-            rb.AddForce(transform.up * 8, ForceMode.VelocityChange);
-            rb.AddForce(-transform.forward * 50, ForceMode.VelocityChange);
-    }
+
 
     void Dead()
     {
