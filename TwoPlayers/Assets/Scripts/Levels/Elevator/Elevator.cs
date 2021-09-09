@@ -4,9 +4,9 @@ public class Elevator : MonoBehaviour
 {
     float minY;
     [Header("Elevator parameters")]
-    [Tooltip("ÒÛ ÎÁÅÇÜßÍÀ")] [SerializeField] float maxY;
-    [Tooltip("×È ×È ×È")] [SerializeField] float moveSpeed = 1;
-    [Tooltip("ÒÛ ÎÁÅÇÜßÍÀ")] [SerializeField] bool isAnyButton;
+    [SerializeField] float maxY;
+    [SerializeField] float moveSpeed = 1;
+    [SerializeField] bool isAnyButton;
     [Header("Buttons links")]
     [SerializeField] PressurePlate[] buttons;
 

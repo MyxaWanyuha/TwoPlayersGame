@@ -6,10 +6,11 @@ public class Trap : MonoBehaviour
 {
     float minY;
     float maxY;
-    [SerializeField] bool isMoveUp = false;
-    [SerializeField] bool isStopped = false;
+    bool isMoveUp = false;
+    bool isStopped = false;
     bool temp = false;
-    [SerializeField]  float cd = 2;
+    [Tooltip("Начальная задержка перед первым применением")] [SerializeField] float delay;
+    [Tooltip("Время перезарядки")] [SerializeField]  float cd = 2;
     private void Start()
     {
         minY = transform.localPosition.y;
@@ -49,21 +50,28 @@ public class Trap : MonoBehaviour
     }
     private void Update()
     {
-        if (!isStopped)
+        if (delay > 0)
         {
-            if (isMoveUp)
-            {
-                MoveUp();
-            }
-            else
-            {
-                MoveDown();
-            }
+            delay -= Time.deltaTime;
         }
-        else if (!temp)
+        else
         {
-            StartCoroutine(Wait(cd));
+            if (!isStopped)
+            {
+                if (isMoveUp)
+                {
+                    MoveUp();
+                }
+                else
+                {
+                    MoveDown();
+                }
+            }
+            else if (!temp)
+            {
+                StartCoroutine(Wait(cd));
 
+            }
         }
 
     }
