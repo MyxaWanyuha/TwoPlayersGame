@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class Elevator : MonoBehaviour
 {
-    [Header("Elevator parameters")]
     float minY;
-    [SerializeField] float maxY;
-    [SerializeField] float moveSpeed = 1;
-    [SerializeField] bool isAnyButton;
+    [Header("Elevator parameters")]
+    [Tooltip("ÒÛ ÎÁÅÇÜßÍÀ")] [SerializeField] float maxY;
+    [Tooltip("×È ×È ×È")] [SerializeField] float moveSpeed = 1;
+    [Tooltip("ÒÛ ÎÁÅÇÜßÍÀ")] [SerializeField] bool isAnyButton;
     [Header("Buttons links")]
     [SerializeField] PressurePlate[] buttons;
 
     void Start()
     {
-        minY = gameObject.transform.position.y;
+        minY = transform.localPosition.y;
     }
 
     private bool IsAnyButtonPressed()
@@ -37,18 +37,18 @@ public class Elevator : MonoBehaviour
 
     private void MoveUp()
     {
-        Vector3 currentPos = transform.position;
+        Vector3 currentPos = transform.localPosition;
         currentPos.y = currentPos.y + moveSpeed * Time.deltaTime;
         if (currentPos.y > minY && currentPos.y < maxY)
-                transform.position = currentPos;
+                transform.localPosition = currentPos;
     }
 
     private void MoveDown()
     {
-        Vector3 currentPos = transform.position;
+        Vector3 currentPos = transform.localPosition;
         currentPos.y = currentPos.y - moveSpeed * Time.deltaTime;
         if (currentPos.y < maxY && currentPos.y > minY)
-                transform.position = currentPos;
+                transform.localPosition  = currentPos;
     }
 
     void Update()
