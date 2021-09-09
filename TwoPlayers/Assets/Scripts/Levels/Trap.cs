@@ -10,8 +10,8 @@ public class Trap : MonoBehaviour
     bool isStopped = false;
     TrapDamageZone trapDamageZone;
     bool temp = false;
-    [Tooltip("Начальная задержка перед первым применением")] [SerializeField] float delay;
-    [Tooltip("Время перезарядки")] [SerializeField]  float cd = 2;
+    [SerializeField] float delay;
+    [SerializeField]  float cooldown = 2;
     private void Start()
     {
         trapDamageZone = gameObject.GetComponent<TrapDamageZone>();
@@ -73,16 +73,11 @@ public class Trap : MonoBehaviour
             }
             else if (!temp)
             {
-                StartCoroutine(Wait(cd));
+                StartCoroutine(Wait(cooldown));
 
             }
         }
 
     }
-    IEnumerator ExecuteAfterTime(float timeInSec)
-    {
-        yield return new WaitForSeconds(timeInSec);
-        isMoveUp = true;
-        //сделать нужное
-    }
+
 }
