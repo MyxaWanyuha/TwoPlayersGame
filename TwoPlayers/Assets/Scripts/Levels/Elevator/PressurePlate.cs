@@ -9,12 +9,13 @@ public class PressurePlate: MonoBehaviour
     private void Start()
     {
         isPressed = false;
-
     }
+
     private void OnTriggerStay(Collider other)
     {
         isPressed = true;
     }
+
     private void OnTriggerExit(Collider other)
     {
         isPressed = false; 
