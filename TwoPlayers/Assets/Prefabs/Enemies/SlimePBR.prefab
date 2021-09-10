@@ -383,6 +383,7 @@ GameObject:
   - component: {fileID: 4023215848608658}
   - component: {fileID: 95161444847813696}
   - component: {fileID: 2445767646233686273}
+  - component: {fileID: 4471199113292277733}
   m_Layer: 0
   m_Name: SlimePBR
   m_TagString: Untagged
@@ -447,6 +448,20 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &4471199113292277733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919012471076396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e392c155445cd394d8b20028b26f6758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  patrolPoints: []
+  timeBetweenAttack: 1
 --- !u!1 &1989916952965676
 GameObject:
   m_ObjectHideFlags: 0
