@@ -5,7 +5,7 @@ using UnityEngine;
 public class AttackComponent : MonoBehaviour
 {
     [SerializeField] Collider[] colliders;
-
+    [SerializeField] int damage = 1;
     public bool IsAttack { get; private set; }
     Animator animator;
 
@@ -20,7 +20,10 @@ public class AttackComponent : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //print("Attack");
+        if (other.CompareTag("Enemy"))
+        {
+            other.GetComponent<ConditionComponent>().TakeDamage(damage);
+        }
     }
 
     public void StartAttack()
