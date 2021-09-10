@@ -5,16 +5,17 @@ public class ConditionComponent : MonoBehaviour
     [SerializeField]
     int maxHealth = 3;
     int health;
-    Rigidbody rb;
+
     Animator animator;
+
     bool isDead = false;
+
     public bool IsCanGetDamage { get; set; }
 
     private void Start()
     {
         health = maxHealth;
         animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody>();
         IsCanGetDamage = true;
     }
 
@@ -40,8 +41,6 @@ public class ConditionComponent : MonoBehaviour
         if (health < maxHealth)
             ++health;
     }
-
-
 
     void Dead()
     {

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class AIBase : MonoBehaviour
 {
+    ConditionComponent conditionComponent;
     NavMeshAgent navMeshAgent;
     Animator animator;
     Transform player1;
@@ -29,6 +30,7 @@ public class AIBase : MonoBehaviour
 
     void Start()
     {
+        conditionComponent = GetComponent<ConditionComponent>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
 
@@ -126,8 +128,9 @@ public class AIBase : MonoBehaviour
 
     Transform GetNearestPlayer()
     {
-        //TODO
-        return player1;
+        var sqrDistP1 = (player1.position - transform.position).sqrMagnitude;
+        var sqrDistP2 = (player2.position - transform.position).sqrMagnitude;
+        return sqrDistP1 < sqrDistP2 ? player1 : player2;
     }
 
     bool CanSeePlayer(Transform player)
@@ -143,7 +146,7 @@ public class AIBase : MonoBehaviour
         return direction.magnitude < meleeDist;
     }
 
-    bool CanStopChase(Transform player) //Stop follow the player
+    bool CanStopChase(Transform player)
     {
         Vector3 direction = player.position - transform.position;
         return direction.magnitude > visibleDist;
@@ -168,7 +171,6 @@ public class AIBase : MonoBehaviour
                 //animator.GetComponent<AnimatorEventsEn>().DisableWeaponColl();
                 break;
             case AIState.Hit:
-                //animator.ResetTrigger("isHited");
                 break;
         }
         switch (newState)
