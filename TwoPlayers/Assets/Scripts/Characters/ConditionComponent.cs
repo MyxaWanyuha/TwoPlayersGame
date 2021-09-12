@@ -8,7 +8,7 @@ public class ConditionComponent : MonoBehaviour
 
     Animator animator;
 
-    bool isDead = false;
+    public bool isDead = false;
 
     public bool IsCanGetDamage { get; set; }
 

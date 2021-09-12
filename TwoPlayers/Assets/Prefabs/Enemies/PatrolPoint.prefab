@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5340864050614359301}
   - component: {fileID: 5125319338245146267}
   m_Layer: 0
-  m_Name: patrol
+  m_Name: PatrolPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -9,7 +9,7 @@ public class AIBase : MonoBehaviour
     Animator animator;
     Transform player1;
     Transform player2;
-
+    [SerializeField] BoxCollider boxCollider;
     enum AIState
     {
         Idle, Patrol, Chase, Hit, Attack
@@ -21,7 +21,7 @@ public class AIBase : MonoBehaviour
     int curPatrolIndex = -1;
 
     float waitTimer = 0;
-    [SerializeField] float timeBetweenAttack = 1.0f;
+    [SerializeField] float timeStopToAttack = 1.0f;
 
     float visibleDist = 10.0f;
     float visisbleAngle = 90.0f;
@@ -60,6 +60,12 @@ public class AIBase : MonoBehaviour
 
     void Update()
     {
+        if (conditionComponent.isDead == true)
+        {
+            boxCollider.enabled = false;
+            animator.Play("Die");
+        }
+        
         animator.SetFloat("Speed", navMeshAgent.speed);
         var nearestPlayer = GetNearestPlayer();
         switch (currentState)
@@ -100,8 +106,19 @@ public class AIBase : MonoBehaviour
             case AIState.Attack:
                 LookPlayer(2.0f, nearestPlayer);
 
+                if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") == false)
+                {
+                    animator.Play("Attack");
+                    Ray ray = new Ray(animator.transform.position + new Vector3(0, 0.5f, 0), animator.transform.forward);
+                    RaycastHit hit;
+                    if (Physics.Raycast(ray, out hit, 1.5f) && hit.collider.CompareTag("Player"))
+                    {
+                        hit.collider.GetComponent<ConditionComponent>().TakeDamage(1);
+                    }
+                }
+
                 waitTimer += Time.deltaTime;
-                if (waitTimer >= timeBetweenAttack)
+                if (waitTimer >= timeStopToAttack)
                 {
                     if (CanAttackPlayer(nearestPlayer))
                         ChangeState(AIState.Chase);
@@ -179,7 +196,6 @@ public class AIBase : MonoBehaviour
     void LookPlayer(float speedRot, Transform player)
     {
         Vector3 direction = player.position - transform.position;
-        float angle = Vector3.Angle(direction, transform.forward);
         direction.y = 0;
 
         if (direction != Vector3.zero)
