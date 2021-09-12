@@ -52,9 +52,6 @@ public class MovementComponent : MonoBehaviour
 
     private void Update()
     {
-        ForwardInput = Mathf.RoundToInt(Input.GetAxis(vertical));
-        TurnInput = Mathf.RoundToInt(Input.GetAxis(horizontal));
-        JumpInput = Input.GetButton(jump);
     }
 
     private void CheckGrounded()
@@ -111,7 +108,7 @@ public class MovementComponent : MonoBehaviour
         }
 
         rigidbody.MovePosition(transform.position + move * Time.deltaTime);
-        if (allowJump && JumpInput && IsGrounded)
+        if (allowJump && IsGrounded && Input.GetButton(jump))
         {
             rigidbody.AddForce(transform.up * jumpSpeed, ForceMode.VelocityChange);
         }

@@ -17,9 +17,8 @@ public class AIBase : MonoBehaviour
 
     AIState currentState = AIState.Idle;
 
-    //[SerializeField] List<Patrol> patrolPoints = new List<Patrol>();
     [SerializeField] Patrol[] patrolPoints;
-    int curPatrolIndex = -1; //The point of the patrol points where the enemy goes
+    int curPatrolIndex = -1;
 
     float waitTimer = 0;
     [SerializeField] float timeBetweenAttack = 1.0f;
@@ -47,33 +46,38 @@ public class AIBase : MonoBehaviour
             player1 = players[0].transform;
             player2 = players[1].transform;
         }
+        animator.SetBool("IsPatrolling", true);
+
+        if (CanSeePlayer(GetNearestPlayer()))
+        {
+            ChangeState(AIState.Chase);
+        }
+        else if (Random.Range(0, 100) < 10)
+        {
+            ChangeState(AIState.Patrol);
+        }
     }
 
     void Update()
     {
+        animator.SetFloat("Speed", navMeshAgent.speed);
         var nearestPlayer = GetNearestPlayer();
         switch (currentState)
         {
-            case AIState.Idle:
-                if (CanSeePlayer(nearestPlayer))
-                {
-                    ChangeState(AIState.Chase);
-                }
-                else if (Random.Range(0, 100) < 10)
-                {
-                    ChangeState(AIState.Patrol);
-                }
-                break;
             case AIState.Patrol:
                 if (navMeshAgent.remainingDistance < 1)
                 {
                     if (curPatrolIndex >= patrolPoints.Length - 1)
+                    {
                         curPatrolIndex = 0;
+                    }
                     else
-                        curPatrolIndex++;
+                    {
+                        ++curPatrolIndex;
+                    }
                     navMeshAgent.SetDestination(patrolPoints[curPatrolIndex].transform.position);
                 }
-
+                
                 if (CanSeePlayer(nearestPlayer))
                 {
                     ChangeState(AIState.Chase);
@@ -98,24 +102,6 @@ public class AIBase : MonoBehaviour
 
                 waitTimer += Time.deltaTime;
                 if (waitTimer >= timeBetweenAttack)
-                {
-                    if (CanAttackPlayer(nearestPlayer))
-                        ChangeState(AIState.Chase);
-                    else
-                        ChangeState(AIState.Patrol);
-                }
-                break;
-            case AIState.Hit:
-                waitTimer += Time.deltaTime;
-                if (waitTimer < 0.5f)
-                {
-                    LookPlayer(5.0f, nearestPlayer);
-                }
-                //else if (waitTimer >= 0.5f/* && isInvincible*/)
-                //{
-                //    isInvincible = false;
-                //}
-                else if (waitTimer >= 1.25f)
                 {
                     if (CanAttackPlayer(nearestPlayer))
                         ChangeState(AIState.Chase);
@@ -154,31 +140,10 @@ public class AIBase : MonoBehaviour
 
     void ChangeState(AIState newState)
     {
-        switch (currentState)
-        {
-            case AIState.Idle:
-                //animator.ResetTrigger("isIdle");
-                break;
-            case AIState.Patrol:
-                //animator.ResetTrigger("isPatrolling");
-                break;
-            case AIState.Chase:
-                //animator.ResetTrigger("isChasing");
-                break;
-            case AIState.Attack:
-                //animator.ResetTrigger("isMeleeAttacking");
-                //animEv.isAttacking = false;
-                //animator.GetComponent<AnimatorEventsEn>().DisableWeaponColl();
-                break;
-            case AIState.Hit:
-                break;
-        }
         switch (newState)
         {
-            case AIState.Idle:
-                //anim.SetTrigger("isIdle");
-                break;
             case AIState.Patrol:
+                animator.SetBool("IsPatrolling", true);
                 navMeshAgent.speed = 2;
                 navMeshAgent.isStopped = false;
 
@@ -193,21 +158,17 @@ public class AIBase : MonoBehaviour
                         lastDist = distance;
                     }
                 }
-                //anim.SetTrigger("isPatrolling");
                 break;
             case AIState.Chase:
                 navMeshAgent.speed = 3;
                 navMeshAgent.isStopped = false;
-                //anim.SetTrigger("isChasing");
+                animator.SetBool("IsPatrolling", false);
                 break;
             case AIState.Attack:
-                //animator.SetTrigger("isMeleeAttacking");
                 navMeshAgent.isStopped = true;
                 waitTimer = 0;
-                //animEv.isAttacking = true;
                 break;
             case AIState.Hit:
-                //anim.SetTrigger("isHited");
                 navMeshAgent.isStopped = true;
                 waitTimer = 0;
                 break;
