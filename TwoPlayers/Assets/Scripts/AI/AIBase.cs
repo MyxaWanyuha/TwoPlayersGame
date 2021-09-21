@@ -58,12 +58,20 @@ public class AIBase : MonoBehaviour
         }
     }
 
+    bool isWasDead = false;
     void Update()
     {
         if (conditionComponent.isDead == true)
         {
-            boxCollider.enabled = false;
-            animator.Play("Die");
+            if (isWasDead == false)
+            {
+                boxCollider.enabled = false;
+                animator.Play("Die");
+                var info = animator.GetCurrentAnimatorStateInfo(0);
+                Destroy(gameObject, info.length);
+                isWasDead = true;
+            }
+            return;
         }
         
         animator.SetFloat("Speed", navMeshAgent.speed);
