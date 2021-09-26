@@ -903,7 +903,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 1
-  TagDamage: Player
+  TagDamage: Enemy
 --- !u!114 &7045614832475041719
 MonoBehaviour:
   m_ObjectHideFlags: 0

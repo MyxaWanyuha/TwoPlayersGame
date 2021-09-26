@@ -466,7 +466,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxCollider: {fileID: 7473636058731128697}
   patrolPoints: []
-  timeBetweenAttack: 1
+  timeStopToAttack: 1
 --- !u!114 &8461999583006045812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -520,7 +520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 1
-  TagDamage: Enemy
+  TagDamage: Player
 --- !u!1 &1989916952965676
 GameObject:
   m_ObjectHideFlags: 0
