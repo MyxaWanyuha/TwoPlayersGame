@@ -19,10 +19,12 @@ public class ConditionComponent : MonoBehaviour
         IsCanGetDamage = true;
     }
 
+    public bool IsTryGetDamage = false;
     public void TakeDamage(int damage)
     {
         if (IsCanGetDamage == false)
         {
+            IsTryGetDamage = true;
             print("Cant get damage");
             return;
         }

@@ -4,18 +4,18 @@ using System.Collections.Generic;
 
 public class AIBase : MonoBehaviour
 {
-    ConditionComponent conditionComponent;
+    protected ConditionComponent conditionComponent;
+    protected Animator animator;
     NavMeshAgent navMeshAgent;
-    Animator animator;
     Transform player1;
     Transform player2;
     [SerializeField] BoxCollider boxCollider;
-    enum AIState
+    protected enum AIState
     {
         Idle, Patrol, Chase, Hit, Attack
     }
 
-    AIState currentState = AIState.Idle;
+    protected AIState currentState = AIState.Idle;
 
     [SerializeField] Patrol[] patrolPoints;
     int curPatrolIndex = -1;
@@ -29,23 +29,10 @@ public class AIBase : MonoBehaviour
 
     void Start()
     {
-        conditionComponent = GetComponent<ConditionComponent>();
-        navMeshAgent = GetComponent<NavMeshAgent>();
-        animator = GetComponentInChildren<Animator>();
+        Init();
 
         if (patrolPoints.Length != 0)
             ChangeState(AIState.Patrol);
-
-        var players = GameObject.FindGameObjectsWithTag("Player");
-        if (players.Length != 2)
-        {
-            print("Error: players count " + players.Length.ToString());
-        }
-        else
-        {
-            player1 = players[0].transform;
-            player2 = players[1].transform;
-        }
         animator.SetBool("IsPatrolling", true);
 
         if (CanSeePlayer(GetNearestPlayer()))
@@ -58,8 +45,26 @@ public class AIBase : MonoBehaviour
         }
     }
 
+    protected void Init()
+    {
+        conditionComponent = GetComponent<ConditionComponent>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        animator = GetComponentInChildren<Animator>();
+
+        var players = GameObject.FindGameObjectsWithTag("Player");
+        if (players.Length != 2)
+        {
+            print("Error: players count " + players.Length.ToString());
+        }
+        else
+        {
+            player1 = players[0].transform;
+            player2 = players[1].transform;
+        }
+    }
+
     bool isWasDead = false;
-    void Update()
+    protected bool CheckDead()
     {
         if (conditionComponent.isDead == true)
         {
@@ -71,73 +76,95 @@ public class AIBase : MonoBehaviour
                 Destroy(gameObject, info.length);
                 isWasDead = true;
             }
-            return;
+            return true;
         }
-        
+        return false;
+    }
+
+    void Update()
+    {
+        if (CheckDead())
+            return;
+
         animator.SetFloat("Speed", navMeshAgent.speed);
         var nearestPlayer = GetNearestPlayer();
         switch (currentState)
         {
             case AIState.Patrol:
-                if (navMeshAgent.remainingDistance < 1)
-                {
-                    if (curPatrolIndex >= patrolPoints.Length - 1)
-                    {
-                        curPatrolIndex = 0;
-                    }
-                    else
-                    {
-                        ++curPatrolIndex;
-                    }
-                    navMeshAgent.SetDestination(patrolPoints[curPatrolIndex].transform.position);
-                }
-                
-                if (CanSeePlayer(nearestPlayer))
-                {
-                    ChangeState(AIState.Chase);
-                }
+                Patrol(nearestPlayer);
                 break;
             case AIState.Chase:
-                navMeshAgent.SetDestination(nearestPlayer.position);
-                if (navMeshAgent.hasPath)
-                {
-                    if (CanAttackPlayer(nearestPlayer))
-                    {
-                        ChangeState(AIState.Attack);
-                    }
-                    else if (CanStopChase(nearestPlayer))
-                    {
-                        ChangeState(AIState.Patrol);
-                    }
-                }
+                Chase(nearestPlayer);
                 break;
             case AIState.Attack:
-                LookPlayer(2.0f, nearestPlayer);
-
-                if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") == false)
-                {
-                    animator.Play("Attack");
-                    Ray ray = new Ray(animator.transform.position + new Vector3(0, 0.5f, 0), animator.transform.forward);
-                    RaycastHit hit;
-                    if (Physics.Raycast(ray, out hit, 1.5f) && hit.collider.CompareTag("Player"))
-                    {
-                        hit.collider.GetComponent<ConditionComponent>().TakeDamage(1);
-                    }
-                }
-
-                waitTimer += Time.deltaTime;
-                if (waitTimer >= timeStopToAttack)
-                {
-                    if (CanAttackPlayer(nearestPlayer))
-                        ChangeState(AIState.Chase);
-                    else
-                        ChangeState(AIState.Patrol);
-                }
+                Attack(nearestPlayer);
                 break;
         }
     }
 
-    Transform GetNearestPlayer()
+    protected void Attack(Transform nearestPlayer)
+    {
+        LookPlayer(2.0f, nearestPlayer);
+
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") == false)
+        {
+            animator.Play("Attack");
+            Ray ray = new Ray(animator.transform.position + new Vector3(0, 0.5f, 0), animator.transform.forward);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 1.5f) && hit.collider.CompareTag("Player"))
+            {
+                hit.collider.GetComponent<ConditionComponent>().TakeDamage(1);
+            }
+        }
+
+        waitTimer += Time.deltaTime;
+        if (waitTimer >= timeStopToAttack)
+        {
+            if (CanAttackPlayer(nearestPlayer))
+                ChangeState(AIState.Chase);
+            else
+                ChangeState(AIState.Patrol);
+        }
+    }
+
+    protected void Chase(Transform nearestPlayer)
+    {
+        navMeshAgent.SetDestination(nearestPlayer.position);
+        if (navMeshAgent.hasPath)
+        {
+            if (CanAttackPlayer(nearestPlayer))
+            {
+                ChangeState(AIState.Attack);
+            }
+            else if (CanStopChase(nearestPlayer))
+            {
+                ChangeState(AIState.Patrol);
+            }
+        }
+    }
+
+    private void Patrol(Transform nearestPlayer)
+    {
+        if (navMeshAgent.remainingDistance < 1)
+        {
+            if (curPatrolIndex >= patrolPoints.Length - 1)
+            {
+                curPatrolIndex = 0;
+            }
+            else
+            {
+                ++curPatrolIndex;
+            }
+            navMeshAgent.SetDestination(patrolPoints[curPatrolIndex].transform.position);
+        }
+
+        if (CanSeePlayer(nearestPlayer))
+        {
+            ChangeState(AIState.Chase);
+        }
+    }
+
+    protected Transform GetNearestPlayer()
     {
         var sqrDistP1 = (player1.position - transform.position).sqrMagnitude;
         var sqrDistP2 = (player2.position - transform.position).sqrMagnitude;
