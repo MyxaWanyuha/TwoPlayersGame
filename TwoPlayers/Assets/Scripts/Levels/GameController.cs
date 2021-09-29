@@ -18,6 +18,11 @@ public class GameController : MonoBehaviour
         instance = this;
         var enemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
         MaxPoints += enemies * 10;
-        //TODO coins
+
+        var coins = GameObject.FindGameObjectsWithTag("Coin");
+        foreach(var e in coins)
+        {
+            MaxPoints += e.GetComponent<PickUpCoin>().GetPoints();
+        }
     }
 }
