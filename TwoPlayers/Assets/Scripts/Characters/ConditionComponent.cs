@@ -38,14 +38,21 @@ public class ConditionComponent : MonoBehaviour
         }
     }
 
-    public void Healing()
+    public bool Healing(int heal = 1)
     {
-        if (health < maxHealth)
-            ++health;
+        var oldHealth = health;
+        heal += health;
+        heal = Mathf.Min(heal, maxHealth);
+        health = heal;
+        return oldHealth != health;
     }
 
     void Dead()
     {
         print("Dead");
+        if(gameObject.CompareTag("Enemy"))
+        {
+            GameController.GetInstance().AddPoints(10);
+        }
     }
 }

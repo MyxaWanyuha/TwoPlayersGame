@@ -13,7 +13,6 @@ public class TrapDamageZone : MonoBehaviour
         {
             if (other.CompareTag("Player"))
             {
-                print("fasdf");
                 var conditionComponent = other.gameObject.GetComponent<ConditionComponent>();
                 conditionComponent.TakeDamage(Damage);
                 MoveUp(other.gameObject.GetComponent<Rigidbody>());
