@@ -4,20 +4,23 @@ using UnityEngine;
 
 public class Chest : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    Vector3 openPos = new Vector3(0, -0.342f, 0.512f);
+    Vector3 openRot = new Vector3(-48, 0, 0);
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] GameObject cap;
+
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if(other.CompareTag("Player"))
+        {
+            Open();
+        }
     }
 
     void Open()
     {
-        //TODO change head pos, spawn items
+        cap.transform.localPosition = openPos;
+        cap.transform.localEulerAngles = openRot;
+        //TODO spawn items
     }
 }
