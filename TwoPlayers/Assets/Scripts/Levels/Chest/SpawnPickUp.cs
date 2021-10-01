@@ -20,7 +20,12 @@ public class SpawnPickUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Respawn") || other.CompareTag("Coin") || other.CompareTag("Health")) return;
+        if (other.CompareTag("Respawn") 
+            || other.CompareTag("Chest") 
+            || other.CompareTag("Coin") 
+            || other.CompareTag("Health") 
+            || other.CompareTag("Player")) return;
+
         if (spawnObject)
         {
             var rot = new Quaternion();

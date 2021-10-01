@@ -30,6 +30,20 @@ public class GameController : MonoBehaviour
         {
             maxPoints += e.GetComponent<PickUpCoin>().GetPoints();
         }
+
+        var Chests = GameObject.FindGameObjectsWithTag("MainChest");
+        foreach (var e in Chests)
+        {
+            var items = e.GetComponent<Chest>().PickUpItems;
+            foreach (var i in items)
+            {
+                var coin = i.GetComponent<PickUpCoin>();
+                if (coin)
+                {
+                    maxPoints += coin.GetPoints();
+                }
+            }
+        }
         score.text = string.Format("0/{0}", maxPoints);
     }
 }

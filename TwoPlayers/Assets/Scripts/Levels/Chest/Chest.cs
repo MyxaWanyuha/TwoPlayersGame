@@ -9,8 +9,10 @@ public class Chest : MonoBehaviour
 
     [SerializeField] GameObject cap;
     [SerializeField] GameObject spawner;
+    
+    public GameObject[] PickUpItems;
 
-    [SerializeField] GameObject[] PickUpItems;
+    bool isActivated = false;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -22,6 +24,8 @@ public class Chest : MonoBehaviour
 
     void Open()
     {
+        if (isActivated) return;
+        isActivated = true;
         cap.transform.localPosition = openPos;
         cap.transform.localEulerAngles = openRot;
         foreach (var e in PickUpItems)

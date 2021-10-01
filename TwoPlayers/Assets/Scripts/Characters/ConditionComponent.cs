@@ -51,7 +51,6 @@ public class ConditionComponent : MonoBehaviour
 
     void Dead()
     {
-        print("Dead");
         if(gameObject.CompareTag("Enemy"))
         {
             GameController.GetInstance().AddPoints(10);

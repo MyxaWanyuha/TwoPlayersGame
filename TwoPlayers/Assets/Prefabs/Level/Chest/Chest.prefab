@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 318358647038764269}
   m_Layer: 0
   m_Name: Plane (3)
-  m_TagString: Untagged
+  m_TagString: Chest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 6400867674052498276}
   m_Layer: 0
   m_Name: Plane (1)
-  m_TagString: Untagged
+  m_TagString: Chest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 3095114689607756452}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Chest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -302,7 +302,7 @@ GameObject:
   - component: {fileID: 3746409745086493873}
   m_Layer: 0
   m_Name: Plane (5)
-  m_TagString: Untagged
+  m_TagString: Chest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -398,7 +398,7 @@ GameObject:
   - component: {fileID: 4515816072914272919}
   m_Layer: 0
   m_Name: Plane (4)
-  m_TagString: Untagged
+  m_TagString: Chest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -494,7 +494,7 @@ GameObject:
   - component: {fileID: 7840513537626591777}
   m_Layer: 0
   m_Name: Plane (2)
-  m_TagString: Untagged
+  m_TagString: Chest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -589,7 +589,7 @@ GameObject:
   - component: {fileID: 155356116031677797}
   m_Layer: 0
   m_Name: ChestMesh.001
-  m_TagString: Untagged
+  m_TagString: Chest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -669,9 +669,10 @@ GameObject:
   - component: {fileID: 7281262992956140547}
   - component: {fileID: 7982950139266136358}
   - component: {fileID: 8010998761129112327}
+  - component: {fileID: 5753454635795269090}
   m_Layer: 0
   m_Name: Chest
-  m_TagString: Untagged
+  m_TagString: MainChest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -723,6 +724,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cap: {fileID: 7550945621242757068}
+  spawner: {fileID: 1249698221277323511, guid: 3d4dda11a8cc5a44598f155e9536ca83, type: 3}
+  PickUpItems: []
+--- !u!65 &5753454635795269090
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7946582515151107769}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.8243287, z: 0.6621669}
+  m_Center: {x: -3.9589476e-10, y: 0.016256481, z: 0.50448835}
 --- !u!1 &8555933090762391303
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,7 +752,7 @@ GameObject:
   - component: {fileID: 5292422050823849648}
   m_Layer: 0
   m_Name: ChestMesh
-  m_TagString: Untagged
+  m_TagString: Chest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

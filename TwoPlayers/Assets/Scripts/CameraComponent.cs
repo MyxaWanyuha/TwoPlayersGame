@@ -6,7 +6,7 @@ public class CameraComponent : MonoBehaviour
     [SerializeField] Transform t2;
     public void FixedCameraFollowSmooth()
     {
-        const float zoomFactor = 1.5f;
+        const float zoomFactor = 1.7f;
         const float followTimeDelta = 0.8f;
 
         Vector3 midpoint = (t1.position + t2.position) * 0.5f;
@@ -26,7 +26,7 @@ public class CameraComponent : MonoBehaviour
         if ((cameraDestination - cam.transform.position).magnitude <= 0.05f)
             cam.transform.position = cameraDestination;
 
-        var v = new Vector3(0, (t1.position.y + t2.position.y) * 0.5f - 3, 0);
+        var v = new Vector3(0, (t1.position.y + t2.position.y) * 0.35f - 3, 0);
         cam.transform.rotation = Quaternion.LookRotation(v - midpoint, Vector3.up);
     }
 
