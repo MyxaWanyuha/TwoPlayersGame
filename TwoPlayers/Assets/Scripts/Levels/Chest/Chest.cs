@@ -9,12 +9,19 @@ public class Chest : MonoBehaviour
 
     [SerializeField] GameObject cap;
 
+    [SerializeField] GameObject[] Items;
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
         {
             Open();
         }
+    }
+
+    void SpawnItem()
+    {
+
     }
 
     void Open()
