@@ -8,8 +8,9 @@ public class Chest : MonoBehaviour
     Vector3 openRot = new Vector3(-48, 0, 0);
 
     [SerializeField] GameObject cap;
+    [SerializeField] GameObject spawner;
 
-    [SerializeField] GameObject[] Items;
+    [SerializeField] GameObject[] PickUpItems;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -19,15 +20,22 @@ public class Chest : MonoBehaviour
         }
     }
 
-    void SpawnItem()
-    {
-
-    }
-
     void Open()
     {
         cap.transform.localPosition = openPos;
         cap.transform.localEulerAngles = openRot;
-        //TODO spawn items
+        foreach (var e in PickUpItems)
+        {
+            SpawnItem(e);
+        }
+    }
+
+    void SpawnItem(GameObject e)
+    {
+        var spawnPos = transform.position + new Vector3(0, 1, 0);
+        var spawned = Instantiate(spawner, spawnPos, transform.rotation);
+        spawned.GetComponent<SpawnPickUp>().spawnObject = e;
+        spawned.GetComponent<MeshFilter>().mesh = e.GetComponent<MeshFilter>().sharedMesh;
+        spawned.GetComponent<MeshRenderer>().material = e.GetComponent<MeshRenderer>().sharedMaterial;
     }
 }
