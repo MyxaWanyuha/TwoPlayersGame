@@ -5,7 +5,7 @@ public class ConditionComponent : MonoBehaviour
     [SerializeField]
     int maxHealth = 3;
     int health;
-
+    public int Health => health;
     Animator animator;
 
     public bool isDead = false;
@@ -33,8 +33,10 @@ public class ConditionComponent : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
+            health = 0;
             isDead = true;
             Dead();
+        
         }
     }
 

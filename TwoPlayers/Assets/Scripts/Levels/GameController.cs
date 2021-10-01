@@ -1,14 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    int Points = 0;
-    int MaxPoints = 0;
-    public int GetPoints() => Points;
-    public void AddPoints(int p) => Points += p;
-    public int GetMaxPoints() => MaxPoints;
+    int points = 0;
+    int maxPoints = 0;
+    [SerializeField] Text score;
+    public int GetPoints() => points;
+    public void AddPoints(int p) 
+    {
+        points += p;
+        score.text = string.Format("{0}/{1}", points,maxPoints);
+    } 
+    public int GetMaxPoints() => maxPoints;
 
     static GameController instance;
     public static GameController GetInstance() => instance;
@@ -17,12 +23,13 @@ public class GameController : MonoBehaviour
     {
         instance = this;
         var enemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
-        MaxPoints += enemies * 10;
+        maxPoints += enemies * 10;
 
         var coins = GameObject.FindGameObjectsWithTag("Coin");
         foreach(var e in coins)
         {
-            MaxPoints += e.GetComponent<PickUpCoin>().GetPoints();
+            maxPoints += e.GetComponent<PickUpCoin>().GetPoints();
         }
+        score.text = string.Format("0/{0}", maxPoints);
     }
 }
