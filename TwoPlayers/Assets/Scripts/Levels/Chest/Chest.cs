@@ -9,6 +9,7 @@ public class Chest : MonoBehaviour
 
     [SerializeField] GameObject cap;
     [SerializeField] GameObject spawner;
+    [SerializeField] ObjectsUI ui;
     
     public GameObject[] PickUpItems;
 
@@ -18,7 +19,7 @@ public class Chest : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            Open();
+            //Open();
         }
     }
 
@@ -28,6 +29,7 @@ public class Chest : MonoBehaviour
         isActivated = true;
         cap.transform.localPosition = openPos;
         cap.transform.localEulerAngles = openRot;
+        ui.gameObject.SetActive(false);
         foreach (var e in PickUpItems)
         {
             SpawnItem(e);
