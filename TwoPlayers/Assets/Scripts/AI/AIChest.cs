@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class AIChest : AIBase
 {
+    [SerializeField] ObjectsUI ui;
     void Start()
     {
         Init();
         conditionComponent.IsCanGetDamage = false;
         currentState = AIState.Chase;
     }
-
+    // вставить эту строчку, в метод активации мистика
+    // ui.gameObject.SetActive(false);
     void Update()
     {
         if (CheckDead())
