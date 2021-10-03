@@ -1,24 +1,60 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ObjectsUI : MonoBehaviour
 {
     [SerializeField] Text text;
-    AIChest chest;
+    Action func;
+
+    enum PlayerIndex { Nan, P1, P2};
+    PlayerIndex player = PlayerIndex.Nan;
+
     private void Start()
     {
-        chest = gameObject.GetComponent<AIChest>();
+        var isAI = GetComponent<AIChest>();
+        if(isAI)
+        {
+            func = isAI.Activate;
+        }
+        else
+        {
+            var isChest = GetComponent<Chest>();
+            func = isChest.Open;
+        }
     }
-    // на нажатие кнопки вызвать chest.Activate();
+
     private void OnTriggerEnter(Collider other)
     {
         text.gameObject.SetActive(true);
+        var p = other.GetComponent<MovementComponent>();
+        if (p)
+        {
+            player = p.isPlayer1 ? PlayerIndex.P1 : PlayerIndex.P2;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
         text.gameObject.SetActive(false);
+        player = PlayerIndex.Nan;
+    }
+
+    private void Update()
+    {
+        if(player == PlayerIndex.P1)
+        {
+            if(Input.GetButton("Interact"))
+            {
+                func();
+            }
+        }
+        else if(player == PlayerIndex.P2)
+        {
+            if(Input.GetKey("/") || Input.GetButton("Interact2"))
+            {
+                func();
+            }
+        }
     }
 }

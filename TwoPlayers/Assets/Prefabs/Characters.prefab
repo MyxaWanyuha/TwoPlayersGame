@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 22.299988, y: -15.09996}
+  m_AnchoredPosition: {x: 22.299988, y: -15.099976}
   m_SizeDelta: {x: 34.7312, y: 34.7313}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3634082961514609141
@@ -462,6 +462,7 @@ MonoBehaviour:
   horizontal: Horizontal
   vertical: Vertical
   jump: Jump
+  isPlayer1: 1
   otherPlayerPosition: {fileID: 3123783842193425948}
 --- !u!114 &8386816693454135845
 MonoBehaviour:
@@ -689,6 +690,7 @@ MonoBehaviour:
   horizontal: Horizontal2
   vertical: Vertical2
   jump: Jump2
+  isPlayer1: 0
   otherPlayerPosition: {fileID: 1214375356225896010}
 --- !u!114 &8462442408610226432
 MonoBehaviour:
@@ -1043,7 +1045,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 91.79999, y: -14.999985}
+  m_AnchoredPosition: {x: 91.79999, y: -15}
   m_SizeDelta: {x: 34.7312, y: 34.7313}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &493913689713797294

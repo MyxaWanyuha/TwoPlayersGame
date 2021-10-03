@@ -24,7 +24,7 @@ public class MovementComponent : MonoBehaviour
     [SerializeField] string horizontal = "Horizontal";
     [SerializeField] string vertical = "Vertical";
     [SerializeField] string jump = "Jump";
-
+    public bool isPlayer1 = true;
     [Header("Private")]
     [SerializeField] Transform otherPlayerPosition;
 

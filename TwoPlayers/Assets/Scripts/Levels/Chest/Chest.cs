@@ -15,15 +15,7 @@ public class Chest : MonoBehaviour
 
     bool isActivated = false;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.CompareTag("Player"))
-        {
-            //Open();
-        }
-    }
-
-    void Open()
+    public void Open()
     {
         if (isActivated) return;
         isActivated = true;
