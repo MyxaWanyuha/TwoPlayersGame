@@ -11,8 +11,13 @@ public class AIChest : AIBase
         conditionComponent.IsCanGetDamage = false;
         currentState = AIState.Chase;
     }
-    // вставить эту строчку, в метод активации мистика
-    // ui.gameObject.SetActive(false);
+
+    public void Activate()
+    {
+        ui.gameObject.SetActive(false);
+        conditionComponent.IsTryGetDamage = true;
+    }
+
     void Update()
     {
         if (CheckDead())
