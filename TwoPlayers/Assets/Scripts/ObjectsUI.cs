@@ -6,12 +6,12 @@ public class ObjectsUI : MonoBehaviour
 {
     [SerializeField] Text text;
     Action func;
-
     enum PlayerIndex { Nan, P1, P2};
     PlayerIndex player = PlayerIndex.Nan;
 
     private void Start()
     {
+        text.text =  $"Нажмите кнопку <color=#FFFF00> E </color> или  <color=#0000FF> F </color>, чтобы открыть сундук"; 
         var isAI = GetComponent<AIChest>();
         if(isAI)
         {
