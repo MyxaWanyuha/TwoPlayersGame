@@ -4,14 +4,16 @@ using UnityEngine.UI;
 
 public class ObjectsUI : MonoBehaviour
 {
-    [SerializeField] Text text;
+    [SerializeField] GameObject text;
+    [SerializeField] GameObject imageP01;
+    [SerializeField] GameObject imageP02;
     Action func;
     enum PlayerIndex { Nan, P1, P2};
     PlayerIndex player = PlayerIndex.Nan;
 
     private void Start()
     {
-        text.text =  $"Нажмите кнопку <color=#FFFF00> E </color> или  <color=#0000FF> F </color>, чтобы открыть сундук"; 
+        //text.text =  $"Нажмите кнопку <color=#FFFF00> E </color> или  <color=#0000FF> F </color>, чтобы открыть сундук"; 
         var isAI = GetComponent<AIChest>();
         if(isAI)
         {
@@ -27,6 +29,11 @@ public class ObjectsUI : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         text.gameObject.SetActive(true);
+        if (other.tag == "Player1")
+            imageP01.gameObject.SetActive(true);
+        if (other.tag == "Player2")
+            imageP02.gameObject.SetActive(true);
+
         var p = other.GetComponent<MovementComponent>();
         if (p)
         {
@@ -37,6 +44,8 @@ public class ObjectsUI : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         text.gameObject.SetActive(false);
+        imageP01.gameObject.SetActive(false);
+        imageP02.gameObject.SetActive(false);
         player = PlayerIndex.Nan;
     }
 
