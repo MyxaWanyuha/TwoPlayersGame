@@ -4,7 +4,7 @@ public class ConditionComponent : MonoBehaviour
 {
     [SerializeField]
     int maxHealth = 3;
-    int health;
+    [SerializeField] int health;
     public int Health => health;
     Animator animator;
 
@@ -29,7 +29,8 @@ public class ConditionComponent : MonoBehaviour
             return;
         }
         IsCanGetDamage = false;
-        animator.Play("GetHit");
+        if (animator !=null)
+            animator.Play("GetHit");
         health -= damage;
         if (health <= 0)
         {
@@ -54,6 +55,9 @@ public class ConditionComponent : MonoBehaviour
         if(gameObject.CompareTag("Enemy"))
         {
             GameController.GetInstance().AddPoints(10);
+            animator.Play("Die");
+            var info = animator.GetCurrentAnimatorStateInfo(0);
+            Destroy(gameObject, info.length);
         }
     }
 }
