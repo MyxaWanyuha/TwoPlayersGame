@@ -6,39 +6,30 @@ public class Wall : MonoBehaviour
 {
     [SerializeField] float minZ;
     [SerializeField] float maxZ;
-    [SerializeField] float forwardSpeed;
-    [SerializeField] float backSpeed;
-    bool isMoveForward = true;
-    void Start()
-    {
-
-    }
+    [SerializeField] float forwardSpeed = 1;
+    [SerializeField] float backSpeed = 1;
+    [SerializeField] bool isMoveForward = true;
 
     private void MoveForward()
     {
-        Vector3 currentPos = transform.localPosition;
-        currentPos.z = currentPos.z - forwardSpeed * Time.deltaTime;
-        transform.position = currentPos;
-        if (gameObject.transform.localPosition.z < maxZ)
+        transform.localPosition += transform.forward * forwardSpeed * Time.deltaTime;
+        if (transform.localPosition.z >= maxZ)
         {
-            isMoveForward = false;
+            isMoveForward = !isMoveForward;
         }
     }
 
     private void MoveBack()
     {
-        Vector3 currentPos = transform.localPosition;
-        currentPos.z = currentPos.z + backSpeed * Time.deltaTime;
-        transform.position = currentPos;
-        if (gameObject.transform.localPosition.z > minZ)
+        transform.localPosition -= transform.forward * forwardSpeed * Time.deltaTime;
+        if (transform.localPosition.z <= minZ)
         {
-            isMoveForward = true;
+            isMoveForward = !isMoveForward;
         }
     }
 
     void Update()
     {
-
         if (isMoveForward)
         {
             MoveForward();
