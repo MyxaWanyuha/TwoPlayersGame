@@ -1145,7 +1145,6 @@ MonoBehaviour:
   boxCollider: {fileID: -2563344599048360300}
   patrolPoints: []
   timeStopToAttack: 1
-  ui: {fileID: 9075719219111180443}
 --- !u!65 &-2563344599048360300
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1172,6 +1171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 2
+  health: 0
   isDead: 0
   IsTryGetDamage: 0
 --- !u!114 &9075719219111180443
@@ -1188,7 +1188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 3533108093867277580}
   imageP01: {fileID: 5344850836980907409}
-  imageP02: {fileID: 0}
+  imageP02: {fileID: 2939201267069326950}
 --- !u!65 &4232326810347137006
 BoxCollider:
   m_ObjectHideFlags: 0

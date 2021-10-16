@@ -7,7 +7,6 @@ public class PickUpCoin : PickUpBase
     protected override bool PickUp(Collider other)
     {
         GameController.GetInstance().AddPoints(Points);
-        print(GameController.GetInstance().GetPoints().ToString() + " / " + GameController.GetInstance().GetMaxPoints());
         return true;
     }
 }

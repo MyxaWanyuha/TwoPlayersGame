@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AIChest : AIBase
 {
-    [SerializeField] ObjectsUI ui;
     void Start()
     {
         Init();
@@ -14,7 +13,6 @@ public class AIChest : AIBase
 
     public void Activate()
     {
-        ui.gameObject.SetActive(false);
         conditionComponent.IsTryGetDamage = true;
     }
 
@@ -22,7 +20,6 @@ public class AIChest : AIBase
     {
         if (CheckDead())
             return;
-
         if (conditionComponent.IsTryGetDamage == true)
         {
             if (conditionComponent.IsCanGetDamage == false)

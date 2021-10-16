@@ -166,7 +166,7 @@ BoxCollider:
   m_GameObject: {fileID: 1112555345703196654}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -344,7 +344,7 @@ BoxCollider:
   m_GameObject: {fileID: 1914017215314669863}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -477,6 +477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 3
+  health: 0
   isDead: 0
   IsTryGetDamage: 0
 --- !u!1 &2218774579444276950
@@ -570,7 +571,7 @@ BoxCollider:
   m_GameObject: {fileID: 2218774579444276950}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -669,6 +670,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 3
+  health: 0
   isDead: 0
   IsTryGetDamage: 0
 --- !u!114 &7836450554977031007
@@ -1551,7 +1553,7 @@ BoxCollider:
   m_GameObject: {fileID: 8396810958596345041}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
