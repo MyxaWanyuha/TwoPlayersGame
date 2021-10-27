@@ -6,7 +6,6 @@ public class AttackComponent : MonoBehaviour
     [SerializeField] int damage = 1;
     public bool IsAttack { get; private set; }
     Animator animator;
-
     MovementComponent movement;
 
     private void Start()
@@ -16,23 +15,20 @@ public class AttackComponent : MonoBehaviour
         StopAttack();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Enemy"))
-        {
-            other.GetComponent<ConditionComponent>().TakeDamage(damage);
-        }
-    }
-
     public void StartAttack()
     {
         if (movement.IsGrounded == false) return;
         IsAttack = true;
         movement.IsCanMovingJumping = false;
-        foreach (var e in colliders)
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack01")) return;
+        
+        animator.Play("Attack01");
+        var e = colliders[0];
+        Ray ray = new Ray(e.transform.position - 0.5f * transform.forward, transform.forward);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 1) && hit.collider.CompareTag("Enemy"))
         {
-            e.enabled = true;
-            animator.Play("Attack01");
+            hit.collider.GetComponent<ConditionComponent>().TakeDamage(damage);
         }
     }
 
@@ -40,9 +36,5 @@ public class AttackComponent : MonoBehaviour
     {
         IsAttack = false;
         movement.IsCanMovingJumping = true;
-        foreach (var e in colliders)
-        {
-            e.enabled = false;
-        }
     }
 }

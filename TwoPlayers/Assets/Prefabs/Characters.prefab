@@ -411,7 +411,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colliders:
   - {fileID: 7858347595532716652}
-  - {fileID: 9178623011299379405}
   damage: 1
 --- !u!114 &933455418625328090
 MonoBehaviour:
@@ -654,7 +653,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliders:
-  - {fileID: 6254858272601458490}
   - {fileID: 7499349375913385392}
   damage: 1
 --- !u!114 &6688517654897639833

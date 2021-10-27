@@ -50,10 +50,6 @@ public class MovementComponent : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    private void Update()
-    {
-    }
-
     private void CheckGrounded()
     {
         IsGrounded = false;

@@ -26,6 +26,7 @@ public class AttackInput : MonoBehaviour
         if (isAttack)
         {
             attack.StartAttack();
+            isAttack = !isAttack;
         }
     }
 }
