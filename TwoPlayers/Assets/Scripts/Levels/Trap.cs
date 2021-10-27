@@ -40,7 +40,6 @@ public class Trap : MonoBehaviour
             isStopped = true;
             isMoveUp = true;
         }
-
     }
     
     IEnumerator Wait(float second)
