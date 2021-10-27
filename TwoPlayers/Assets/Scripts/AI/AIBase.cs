@@ -109,9 +109,9 @@ public class AIBase : MonoBehaviour
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") == false)
         {
             animator.Play("Attack");
-            Ray ray = new Ray(animator.transform.position + new Vector3(0, 0.5f, 0), animator.transform.forward);
+            Ray ray = new Ray(animator.transform.position + new Vector3(0, 1.0f, 0), animator.transform.forward);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 1.5f) && hit.collider.CompareTag("Player"))
+            if (Physics.Raycast(ray, out hit, 2.5f) && hit.collider.CompareTag("Player"))
             {
                 hit.collider.GetComponent<ConditionComponent>().TakeDamage(1);
             }
