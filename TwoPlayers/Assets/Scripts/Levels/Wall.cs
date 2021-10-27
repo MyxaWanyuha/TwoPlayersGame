@@ -21,7 +21,7 @@ public class Wall : MonoBehaviour
 
     private void MoveBack()
     {
-        transform.localPosition -= transform.forward * forwardSpeed * Time.deltaTime;
+        transform.localPosition -= transform.forward * backSpeed * Time.deltaTime;
         if (transform.localPosition.z <= minZ)
         {
             isMoveForward = !isMoveForward;
