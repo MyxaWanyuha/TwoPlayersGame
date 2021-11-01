@@ -28,18 +28,18 @@ public class ObjectsUI : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         text.gameObject.SetActive(true);
-        if (other.tag == "Player1")
+        if (other.tag == "Player")
             imageP01.gameObject.SetActive(true);
-        if (other.tag == "Player2")
+        if (other.tag == "Player")
             imageP02.gameObject.SetActive(true);
     }
 
     private void OnTriggerExit(Collider other)
     {
         text.gameObject.SetActive(false);
-        if (other.tag == "Player1")
+        if (other.tag == "Player")
             imageP01.gameObject.SetActive(false);
-        if (other.tag == "Player2")
+        if (other.tag == "Player")
             imageP02.gameObject.SetActive(false);
         //player = PlayerIndex.Nan;
     }
