@@ -994,6 +994,7 @@ GameObject:
   - component: {fileID: 8010998761129112327}
   - component: {fileID: 5753454635795269090}
   - component: {fileID: 6577636990036043742}
+  - component: {fileID: 18413026134085589}
   m_Layer: 0
   m_Name: Chest
   m_TagString: MainChest
@@ -1050,7 +1051,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cap: {fileID: 7550945621242757068}
   spawner: {fileID: 1249698221277323511, guid: 3d4dda11a8cc5a44598f155e9536ca83, type: 3}
-  ui: {fileID: 6577636990036043742}
   PickUpItems: []
 --- !u!65 &5753454635795269090
 BoxCollider:
@@ -1080,6 +1080,18 @@ MonoBehaviour:
   text: {fileID: 2785491177049567782}
   imageP01: {fileID: 4554622132750590709}
   imageP02: {fileID: 5172312661684675627}
+--- !u!114 &18413026134085589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7946582515151107769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f2fcd9386996a94b963e33d49530e3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8555933090762391303
 GameObject:
   m_ObjectHideFlags: 0

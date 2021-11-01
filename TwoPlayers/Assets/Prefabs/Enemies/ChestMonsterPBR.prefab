@@ -873,6 +873,7 @@ GameObject:
   - component: {fileID: 1143575472472081550}
   - component: {fileID: 9075719219111180443}
   - component: {fileID: 4232326810347137006}
+  - component: {fileID: 4760979066161410368}
   m_Layer: 0
   m_Name: ChestMonsterPBR
   m_TagString: Enemy
@@ -1010,6 +1011,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.36737296, z: 0.45508087}
   m_Center: {x: 0, y: 0.50569534, z: 0.5492035}
+--- !u!114 &4760979066161410368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6860756994242604922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fde5fb3ecf590c94595c5ac49917dcef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6860756994242604924
 GameObject:
   m_ObjectHideFlags: 0
