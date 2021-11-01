@@ -9,7 +9,7 @@ public class PressurePlate : MonoBehaviour
     private Vector3 maxY;
     private bool  isStay;
     public bool isPressed;
-
+    [SerializeField] float pressureSpeed = 5;
     private void Start()
     {
         isPressed = false;
@@ -22,7 +22,7 @@ public class PressurePlate : MonoBehaviour
         isStay = true;
         if (this.transform.localPosition.y > minY)
         {
-            transform.localPosition -= maxY *Time.deltaTime;
+            transform.localPosition -= pressureSpeed * maxY * Time.deltaTime;
         }
         isPressed = true;
     }
@@ -30,7 +30,7 @@ public class PressurePlate : MonoBehaviour
     {
         if (!isStay && transform.localPosition.y < maxY.y)
         {
-            transform.localPosition += maxY * Time.deltaTime;
+            transform.localPosition += pressureSpeed * maxY * Time.deltaTime;
         }
     }
     private void OnTriggerExit(Collider other)
