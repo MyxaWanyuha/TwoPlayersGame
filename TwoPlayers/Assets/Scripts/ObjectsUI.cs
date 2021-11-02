@@ -27,8 +27,13 @@ public class ObjectsUI : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (other.tag != "Player")
+            return;
+        var p = other.GetComponent<MovementComponent>();
         text.gameObject.SetActive(false);
-        imageP01.gameObject.SetActive(false);
-        imageP02.gameObject.SetActive(false);
+        if (p.isPlayer1 == true)
+            imageP01.gameObject.SetActive(false);
+        else
+            imageP02.gameObject.SetActive(false);
     }
 }
