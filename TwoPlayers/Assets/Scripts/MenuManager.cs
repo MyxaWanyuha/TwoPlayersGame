@@ -10,8 +10,9 @@ public class MenuManager : MonoBehaviour
     [SerializeField]
     Slider musicSlider;
     [SerializeField]
+    Slider soundSlider;
+    [SerializeField]
     AudioMixerGroup mixer;
-    bool isMusicEnabled = false;
     public void LoadScene(string levelName)
     {
         SceneManager.LoadScene(levelName);
@@ -20,19 +21,30 @@ public class MenuManager : MonoBehaviour
     {
         Application.Quit();
     }
-    public void ToggleMusic()
+    public void ToggleMusic(bool isEnabled)
     {
-        if (isMusicEnabled)
+        if (isEnabled)
         {
-            mixer.audioMixer.SetFloat("MusicVolume", 0);
+            mixer.audioMixer.SetFloat("MusicVolume", musicSlider.value);
         }
         else
             mixer.audioMixer.SetFloat("MusicVolume", -80);
-        isMusicEnabled = !isMusicEnabled;
-
     }
-    public void ChangeMusicVolume()
+    public void ToggleSound(bool isEnabled)
     {
-        mixer.audioMixer.SetFloat("MusicVolume", musicSlider.value);
+        if (isEnabled)
+        {
+            mixer.audioMixer.SetFloat("SoundVolume", soundSlider.value);
+        }
+        else
+            mixer.audioMixer.SetFloat("SoundVolume", -80);
+    }
+    public void ChangeMusicVolume(float volume)
+    {
+        mixer.audioMixer.SetFloat("MusicVolume", volume);
+    }
+    public void ChangeSoundVolume(float volume)
+    {
+        mixer.audioMixer.SetFloat("SoundVolume", volume);
     }
 }
