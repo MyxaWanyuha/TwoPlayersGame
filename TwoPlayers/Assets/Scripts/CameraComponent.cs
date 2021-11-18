@@ -32,7 +32,6 @@ public class CameraComponent : MonoBehaviour
         multiplier = defaultMultiplier + (t1.position.y + t2.position.y) * 0.0017f;
         
         var y = (t1.position.y + t2.position.y) * multiplier;
-        print(y);
         var v = new Vector3(0, y, 0);
         cam.transform.rotation = Quaternion.LookRotation(v - midpoint, Vector3.up);
     }
