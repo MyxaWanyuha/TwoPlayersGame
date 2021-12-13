@@ -5,9 +5,11 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    int points = 0;
+    public int points = 0;
     int maxPoints = 0;
     [SerializeField] Text score;
+    public float timer;
+    public bool isGameFinished = false;
     public int GetPoints() => points;
     public void AddPoints(int p) 
     {
@@ -18,7 +20,11 @@ public class GameController : MonoBehaviour
 
     static GameController instance;
     public static GameController GetInstance() => instance;
-
+    private void Update()
+    {
+        //if (!isGameFinished)
+            timer += Time.deltaTime;
+    }
     void Start()
     {
         instance = this;
