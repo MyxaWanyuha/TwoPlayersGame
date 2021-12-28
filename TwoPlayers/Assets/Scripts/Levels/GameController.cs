@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
+    public ConditionComponent[] players;
     public int points = 0;
     int maxPoints = 0;
     [SerializeField] Text score;

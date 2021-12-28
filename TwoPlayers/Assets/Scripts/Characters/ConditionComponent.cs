@@ -76,7 +76,10 @@ public class ConditionComponent : MonoBehaviour
             Destroy(gameObject, info.length);
             return;
         }
-        Respawn();
+        foreach (var player in GameController.GetInstance().players)
+        {
+            player.Respawn();
+        }
     }
 
     private void Respawn()

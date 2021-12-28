@@ -16,13 +16,13 @@ public class SpawnTrigger : MonoBehaviour
     Text pointsUI;
     [SerializeField]
     Text timerUI;
-    [SerializeField]
     GameController controller;
     public static event SetSpawnPoint setSpawnPoint;
     public  delegate void SetSpawnPoint(Vector3 sp);
     private void Start()
     {
         SpawnP = transform.position;
+        controller = GameController.GetInstance();
     }
     private void OnTriggerEnter(Collider other)
     {
