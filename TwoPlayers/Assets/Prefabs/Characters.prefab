@@ -478,6 +478,7 @@ MonoBehaviour:
   maxHealth: 3
   health: 0
   isDead: 0
+  spawnPoint: {x: 0, y: 0, z: 0}
   IsTryGetDamage: 0
 --- !u!1 &2218774579444276950
 GameObject:
@@ -670,6 +671,7 @@ MonoBehaviour:
   maxHealth: 3
   health: 0
   isDead: 0
+  spawnPoint: {x: 0, y: 0, z: 0}
   IsTryGetDamage: 0
 --- !u!114 &7836450554977031007
 MonoBehaviour:
@@ -1350,6 +1352,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   t1: {fileID: 1214375356225896010}
   t2: {fileID: 3123783842193425948}
+  multiplier: 0.3
 --- !u!1 &7977566577896905126
 GameObject:
   m_ObjectHideFlags: 0
@@ -1610,6 +1613,18 @@ PrefabInstance:
       propertyPath: score
       value: 
       objectReference: {fileID: 6483460050711696531}
+    - target: {fileID: 2028902215716350400, guid: 5376ac60916f82945b36789ad08f9fdb, type: 3}
+      propertyPath: players.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2028902215716350400, guid: 5376ac60916f82945b36789ad08f9fdb, type: 3}
+      propertyPath: players.Array.data[0]
+      value: 
+      objectReference: {fileID: 8386816693454135845}
+    - target: {fileID: 2028902215716350400, guid: 5376ac60916f82945b36789ad08f9fdb, type: 3}
+      propertyPath: players.Array.data[1]
+      value: 
+      objectReference: {fileID: 6688517654897639833}
     - target: {fileID: 3977685347604459661, guid: 5376ac60916f82945b36789ad08f9fdb, type: 3}
       propertyPath: m_Name
       value: GameController
