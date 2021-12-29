@@ -13,6 +13,14 @@ public class MenuManager : MonoBehaviour
     Slider soundSlider;
     [SerializeField]
     AudioMixerGroup mixer;
+    [SerializeField]
+    Toggle musicToggle;
+    [SerializeField]
+    Toggle soundToggle;
+    private void Start()
+    {
+        transform.SetAsLastSibling();
+    }
     public void LoadScene(string levelName)
     {
         SceneManager.LoadScene(levelName);
@@ -23,6 +31,7 @@ public class MenuManager : MonoBehaviour
     }
     public void ToggleMusic(bool isEnabled)
     {
+
         if (isEnabled)
         {
             mixer.audioMixer.SetFloat("MusicVolume", musicSlider.value);
@@ -41,10 +50,12 @@ public class MenuManager : MonoBehaviour
     }
     public void ChangeMusicVolume(float volume)
     {
+        musicToggle.isOn = true;
         mixer.audioMixer.SetFloat("MusicVolume", volume);
     }
     public void ChangeSoundVolume(float volume)
     {
+        soundToggle.isOn = true;
         mixer.audioMixer.SetFloat("SoundVolume", volume);
     }
 }
