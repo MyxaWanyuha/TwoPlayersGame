@@ -27,8 +27,7 @@ public class AttackComponent : MonoBehaviour
 
         if (tag == "Player")
         {
-            var num = Random.Range(0, clips.Length - 1);
-            AudioSource.PlayClipAtPoint(clips[num], transform.position, GameController.GetInstance().GetFXVolume());
+            GameController.GetInstance().PlaySound(clips);
         }
         var e = colliders[0];
         Ray ray = new Ray(e.transform.position - 0.5f * transform.forward, transform.forward);

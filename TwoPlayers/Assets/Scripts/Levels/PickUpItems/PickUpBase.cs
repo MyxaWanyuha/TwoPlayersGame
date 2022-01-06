@@ -14,8 +14,7 @@ public class PickUpBase : MonoBehaviour
             {
                 Instantiate(particle, transform.position, transform.rotation);
             }
-            var num = Random.Range(0, clips.Length - 1);
-            AudioSource.PlayClipAtPoint(clips[num], transform.position, GameController.GetInstance().GetFXVolume());
+            GameController.GetInstance().PlaySound(clips);
             Destroy(gameObject);
         }
     }

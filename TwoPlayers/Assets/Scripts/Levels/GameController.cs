@@ -6,8 +6,7 @@ public class GameController : MonoBehaviour
 {
     [SerializeField]
     MenuManager menuManager;
-    public float GetFXVolume() { return menuManager.GetFXVolume(); }
-
+    
     public ConditionComponent[] players;
     public int points = 0;
     int maxPoints = 0;
@@ -24,16 +23,25 @@ public class GameController : MonoBehaviour
 
     static GameController instance;
     public static GameController GetInstance() => instance;
+
+    GameObject camera;
+    float GetFXVolume() => (menuManager.GetFXVolume() + 80) * 0.01f;
+    public void PlaySound(AudioClip[] clips)
+    {
+        var num = Random.Range(0, clips.Length - 1);
+        AudioSource.PlayClipAtPoint(clips[num], camera.transform.position, GetFXVolume());
+    }
     private void Update()
     {
-        //if (!isGameFinished)
-            timer += Time.deltaTime;
+        timer += Time.deltaTime;
     }
     void Start()
     {
         instance = this;
         var enemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
         maxPoints += enemies * 10;
+
+        camera = GameObject.FindGameObjectWithTag("MainCamera");
 
         var coins = GameObject.FindGameObjectsWithTag("Coin");
         foreach(var e in coins)
