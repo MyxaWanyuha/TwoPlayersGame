@@ -26,6 +26,7 @@ public class SpawnTrigger : MonoBehaviour
     {
         if (isFinish && other.tag == "Player" && UI!=null)
         {
+            GetComponent<AudioSource>().Play();
             UI.SetActive(true);
             pointsUI.text ="Points " + GameController.GetInstance().points.ToString();
             timerUI.text = "Time " + Math.Round(GameController.GetInstance().timer,2);
