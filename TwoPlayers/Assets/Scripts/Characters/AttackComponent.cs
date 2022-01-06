@@ -15,6 +15,7 @@ public class AttackComponent : MonoBehaviour
         StopAttack();
     }
 
+    [SerializeField] AudioClip[] clips;
     public void StartAttack()
     {
         if (movement.IsGrounded == false) return;
@@ -23,6 +24,12 @@ public class AttackComponent : MonoBehaviour
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack01")) return;
         
         animator.Play("Attack01");
+
+        if (tag == "Player")
+        {
+            var num = Random.Range(0, clips.Length - 1);
+            AudioSource.PlayClipAtPoint(clips[num], transform.position, GameController.GetInstance().GetFXVolume());
+        }
         var e = colliders[0];
         Ray ray = new Ray(e.transform.position - 0.5f * transform.forward, transform.forward);
         RaycastHit hit;

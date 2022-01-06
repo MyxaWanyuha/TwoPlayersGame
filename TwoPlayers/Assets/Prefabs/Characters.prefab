@@ -412,6 +412,9 @@ MonoBehaviour:
   colliders:
   - {fileID: 7858347595532716652}
   damage: 1
+  clips:
+  - {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
+  - {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}
 --- !u!114 &933455418625328090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -656,6 +659,9 @@ MonoBehaviour:
   colliders:
   - {fileID: 7499349375913385392}
   damage: 1
+  clips:
+  - {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
+  - {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}
 --- !u!114 &6688517654897639833
 MonoBehaviour:
   m_ObjectHideFlags: 0

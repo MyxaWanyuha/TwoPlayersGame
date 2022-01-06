@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour
 {
     [SerializeField]
     MenuManager menuManager;
+    public float GetFXVolume() { return menuManager.GetFXVolume(); }
 
     public ConditionComponent[] players;
     public int points = 0;
