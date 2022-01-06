@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+       
     [SerializeField]
     Slider musicSlider;
     [SerializeField]
@@ -35,6 +36,7 @@ public class MenuManager : MonoBehaviour
         if (isEnabled)
         {
             mixer.audioMixer.SetFloat("MusicVolume", musicSlider.value);
+ 
         }
         else
             mixer.audioMixer.SetFloat("MusicVolume", -80);
@@ -52,6 +54,14 @@ public class MenuManager : MonoBehaviour
     {
         musicToggle.isOn = true;
         mixer.audioMixer.SetFloat("MusicVolume", volume);
+    }
+    public float GetFXVolume()
+    {
+        if (!soundToggle.enabled)
+            return 0;
+        float x;
+        mixer.audioMixer.GetFloat("SoundVolume", out x);
+        return x;
     }
     public void ChangeSoundVolume(float volume)
     {

@@ -1,10 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
+    [SerializeField]
+    MenuManager menuManager;
+
     public ConditionComponent[] players;
     public int points = 0;
     int maxPoints = 0;
